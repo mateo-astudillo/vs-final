@@ -42,11 +42,6 @@ public class Opening {
         try {
             LocalTime now = LocalTime.now();
             long d = Duration.between(LocalTime.of(8, 0), now).toMinutes();
-            if (d < 10) { // No se puede abrir antes de las 7:50AM
-                new ErrorView("Todavía no se debe abrir la mesa");
-                clear();
-                // return; // PROBANDO
-            }
             if (!login(username, password)) {
                 FailedAttempts.register(username, password);
                 new ErrorView("Las credenciales son incorrectas");
@@ -57,9 +52,14 @@ public class Opening {
             VotingTable.openTable(userId, now);
             app.setCurrentUser(new User(userId, username));
             app.setRealOpeningTime(now);
+            if (d < 10) { // No se puede abrir antes de las 7:50AM
+                new ErrorView("Todavía no se debe abrir la mesa");
+                Incidences.register(userId, new Incidence("Apertura de mesa", "La mesa se abrió antes de las 7:50AM"));
+            }
             if (d > 10)
-                Incidences.register(app.getCurrentUser().id(), new Incidence("Apertura tardía", "Más de 10 minutos sobre las 8AM"));
+                Incidences.register(app.getCurrentUser().id(), new Incidence("Apertura tardía", "Más de 10 minutos sobre las 8:00AM"));
             app.switchTo("validating");
+            clear();
         } catch (Exception e) {
             new ErrorView(e.getMessage());
         }

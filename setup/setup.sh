@@ -3,7 +3,7 @@
 MYSQL_CONTAINER_NAME="vs"
 MYSQL_ROOT_PASSWORD="pass"
 MYSQL_DATABASE="VS"
-SQL_FILES=("create-table.sql" "insert-user.sql" "insert-candidate.sql" "insert-person.sql" "insert-failed-attempt")
+SQL_FILES=("create-table.sql" "insert-user.sql" "insert-candidate.sql" "insert-person.sql" "insert-failed-attempt.sql")
 
 docker run --name $MYSQL_CONTAINER_NAME \
   -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \

@@ -32,7 +32,7 @@ public class Results {
 
     public void loadChart() {
         candidatesChart();
-        otherChart();
+        //otherChart();
     }
 
     private void candidatesChart() {
@@ -112,7 +112,7 @@ public class Results {
         panel = new JPanel();
         panel.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         chartContainer = new JPanel();
-        chartContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        chartContainer.setLayout(new BorderLayout(30, 30));
         chartContainer.setOpaque(false);
         panel.add(chartContainer, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JLabel label1 = new JLabel();
